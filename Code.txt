@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+from google.colab import files
+uploaded = files.upload()
+import io
+df = pd.read_csv(io.BytesIO(uploaded['head.csv']))
+print(df)
+np.random.seed(200)
+k=3
+centroids = {i+1:[np.random.randint(150,900),np.random.randint(800,1600)]
+for i in range(k)
+}
+fig=plt.figure(figsize=(6,6))
+plt.scatter(df['Rice production'],df['Rain Fall'],color='k',s = 60)
+colmap={1:'r',2:'g',3:'b'}
+for i in centroids.keys():
+plt.scatter(*centroids[i],color=colmap[i])
+plt.xlim(0,1000)
+plt.ylim(1000,1600)
+plt.show
+def assignment (df, centroids):
+for i in centroids.keys():
+#sqrt((x1 - x2)^2-(y1 - y2)^2)
+df['distance_from_{}'.format(i)] = (
+48|Pa g e
+np.sqrt(
+(df['Rice production'] - centroids[i][0]) ** 2
++ (df['Rain Fall'] - centroids[i][1]) ** 2
+)
